@@ -17,7 +17,7 @@ function TaskForm({ onAddTask }) {
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           placeholder="Enter your task..."
-          className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500"
           onKeyPress={(e) => {
             if (e.key === 'Enter') {
               handleAddTask();
@@ -26,7 +26,7 @@ function TaskForm({ onAddTask }) {
         />
         <button
           onClick={handleAddTask}
-          className="w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 transition-colors"
+          className="w-full bg-amber-700 text-white py-3 rounded-md hover:bg-amber-600 transition-colors"
         >
           Add Task
         </button>

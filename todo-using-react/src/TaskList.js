@@ -10,7 +10,7 @@ function TaskList({ tasks, onDeleteTask }) {
       
       {tasks.length === 0 ? (
         <p className="text-gray-500 text-center py-8">
-          No tasks yet. Add one above!
+          No tasks yet...!
         </p>
       ) : (
         <ul className="space-y-2">
