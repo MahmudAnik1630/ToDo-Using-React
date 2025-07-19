@@ -39,8 +39,8 @@ function TodoApp() {
 
       <div className="mt-4">
         {list.map((todo, index) => (
-          <div key={index} className="flex justify-between items-center my-2">
-            <h1 className="text-xl">{todo}</h1>
+          <div key={index} className="flex justify-between items-center my-2 border p-2 rounded">
+            <h1 className="text-xl capitalize">{todo}</h1>
             <button
               onClick={() => handleDelete(index)}
               className="text-red-500 text-xl ml-4"
