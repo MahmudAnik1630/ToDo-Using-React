@@ -1,45 +1,55 @@
 import React, { useState } from 'react';
-import Header from './Header';
-import TaskForm from './TaskForm';
-import TaskList from './TaskList';
-import Footer from './Footer';
 
 function TodoApp() {
-  const [tasks, setTasks] = useState([]);
+  const [list, setList] = useState([]);
+  const [item, setItem] = useState('');
 
-  const addTask = (newTask) => {
-    // Check if input is empty
-    if (newTask.trim() === '') {
-      alert('Please enter a task!');
-      return;
-    }
-
-    // Check if task already exists
-    if (tasks.includes(newTask.trim())) {
-      alert('This task already exists!');
-      return;
-    }
-
-    // Add the task
-    setTasks([...tasks, newTask.trim()]);
+  const handleChange = (e) => {
+    setItem(e.target.value);
   };
 
-  const deleteTask = (taskToDelete) => {
-    setTasks(tasks.filter(task => task !== taskToDelete));
+  const handleAdd = () => {
+    if (item.trim() !== '') {
+      setList([...list, item]);
+      setItem('');
+    }
+  };
+
+  const handleDelete = (index) => {
+    const newList = [...list];
+    newList.splice(index, 1);
+    setList(newList);
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
-      <Header />
-      
-      <main className="flex-1 p-4">
-        <div className="max-w-md mx-auto">
-          <TaskForm onAddTask={addTask} />
-          <TaskList tasks={tasks} onDeleteTask={deleteTask} />
-        </div>
-      </main>
+    <div className="todo-app max-w-md mx-auto p-4">
+      <input
+        onChange={handleChange}
+        value={item}
+        type="text"
+        placeholder="Add a new todo"
+        className="p-2 border rounded w-full max-w-md mx-auto my-4"
+      />
+      <button
+        onClick={handleAdd}
+        className="bg-amber-700 text-white p-2 rounded w-full max-w-md mx-auto"
+      >
+        Add Todo
+      </button>
 
-      <Footer />
+      <div className="mt-4">
+        {list.map((todo, index) => (
+          <div key={index} className="flex justify-between items-center my-2">
+            <h1 className="text-xl">{todo}</h1>
+            <button
+              onClick={() => handleDelete(index)}
+              className="text-red-500 text-xl ml-4"
+            >
+              ❌
+            </button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
